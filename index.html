@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para mi niña</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+    }
+
+    .card-container {
+      perspective: 1000px;
+    }
+
+    .card {
+      width: 300px;
+      height: 400px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease;
+    }
+
+    .card:hover {
+      transform: rotateY(180deg);
+    }
+
+    .card .front, .card .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .card .front {
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card .front img {
+      width: 80%;
+      border-radius: 10px;
+    }
+
+    .card .front h3 {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .card .back {
+      background: #ff80d3;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: rotateY(180deg);
+    }
+
+    .card .back p {
+      font-size: 1rem;
+      padding: 0 20px;
+      text-align: center;
+      font-family: 'Georgia', serif;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        width: 250px;
+        height: 350px;
+      }
+
+      .card .front img {
+        width: 70%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card-container">
+    <div class="card">
+      <div class="front">
+        <img src="https://scontent.flpb1-2.fna.fbcdn.net/v/t39.30808-6/452627743_1938373703280368_1448455196994219481_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeF7aSY0wLIen9SeOIlbSINz-RRgTAaxXVH5FGBMBrFdUdDSpgzovc15TtYHAvEj3Z7VVjVva91q56OEpBgLyY86&_nc_ohc=rKggBIAD0P0Q7kNvgHhf8Pc&_nc_oc=AdjAQ0h4fQePs2pcYDu_tAjPhhMEZg-9MmPZki3HxQqLvVOSmrbEgh70jAXDscICUu8&_nc_zt=23&_nc_ht=scontent.flpb1-2.fna&_nc_gid=A2lmpy5KTGApEmO3YNC7wvq&oh=00_AYBccwl_m0S0oWpvFaWh4DUNOFh0jKc5tpJor3BGV-xS6g&oe=679440D7" alt="Flower">
+        <h3>Pequeña Luz<3</h3>
+      </div>
+      <div class="back">
+        <p>"Para la niña más linda y hermosa que mis ojos hayan visto💖."      
+
+            Que tengas un bonito día, te deseo mucha suerte en este día maravilloso y Diosito te me cuide mucho.                                                 
+
+            Te Amo mi Lucecita❤. </p>
+            
+      </div>
+    </div>
+  </div>
+</body>
+</html>
