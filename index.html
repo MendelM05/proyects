@@ -1,115 +1,226 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Para mi niña</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Te Amo</title>
   <style>
-    * {
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
+      background-color: black;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      background: #f3f4f6;
-    }
-
-    .card-container {
-      perspective: 1000px;
-    }
-
-    .card {
-      width: 300px;
-      height: 400px;
+      height: 100vh;
       position: relative;
+    }
+
+    .gift-box {
+      width: 200px;
+      height: 200px;
+      background: repeating-linear-gradient(45deg, #ff69b4, #ff69b4 10px, #ff1493 10px, #ff1493 20px);
+      border-radius: 20px;
+      box-shadow: 0 0 15px #ff69b4;
+      position: relative;
+      cursor: pointer;
+      animation: pulse 2s infinite;
       transform-style: preserve-3d;
-      transition: transform 0.6s ease;
+      perspective: 800px;
     }
 
-    .card:hover {
-      transform: rotateY(180deg);
-    }
-
-    .card .front, .card .back {
+    .lid {
       position: absolute;
       width: 100%;
-      height: 100%;
+      height: 50px;
+      top: 0;
+      left: 0;
+      background-color: #ff1493;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      z-index: 3;
+      transform-origin: top center;
+      transition: transform 1s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      font-size: 30px;
       backface-visibility: hidden;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .card .front {
-      background: #ffffff;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+    .gift-box.open .lid {
+      transform: rotateX(-130deg);
     }
 
-    .card .front img {
-      width: 80%;
-      border-radius: 10px;
+    .box-body {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
     }
 
-    .card .front h3 {
-      margin-top: 15px;
-      font-size: 1.2rem;
-      color: #333;
+    .gift-box::before,
+    .gift-box::after {
+      content: "";
+      position: absolute;
+      background-color: gold;
+      z-index: 2;
     }
 
-    .card .back {
-      background: #ff80d3;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transform: rotateY(180deg);
+    .gift-box::before {
+      width: 20px;
+      height: 100%;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
-    .card .back p {
-      font-size: 1rem;
-      padding: 0 20px;
-      text-align: center;
-      font-family: 'Georgia', serif;
-      font-style: italic;
+    .gift-box::after {
+      height: 20px;
+      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
-    @media (max-width: 768px) {
-      .card {
-        width: 250px;
-        height: 350px;
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
       }
+      50% {
+        transform: scale(1.05);
+      }
+    }
 
-      .card .front img {
-        width: 70%;
+    .message, .second-message {
+      display: none;
+      font-size: 32px;
+      color: pink;
+      z-index: 2;
+      position: absolute;
+      text-align: center;
+      animation: floatText 3s ease-in-out infinite;
+    }
+
+    @keyframes floatText {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .flower {
+      position: absolute;
+      font-size: 30px;
+      animation: floatUp 4s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-600px) scale(1.5);
+        opacity: 0;
       }
     }
   </style>
 </head>
 <body>
-  <div class="card-container">
-    <div class="card">
-      <div class="front">
-        <img src="https://scontent.flpb1-2.fna.fbcdn.net/v/t39.30808-6/452627743_1938373703280368_1448455196994219481_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeF7aSY0wLIen9SeOIlbSINz-RRgTAaxXVH5FGBMBrFdUdDSpgzovc15TtYHAvEj3Z7VVjVva91q56OEpBgLyY86&_nc_ohc=rKggBIAD0P0Q7kNvgHhf8Pc&_nc_oc=AdjAQ0h4fQePs2pcYDu_tAjPhhMEZg-9MmPZki3HxQqLvVOSmrbEgh70jAXDscICUu8&_nc_zt=23&_nc_ht=scontent.flpb1-2.fna&_nc_gid=A2lmpy5KTGApEmO3YNC7wvq&oh=00_AYBccwl_m0S0oWpvFaWh4DUNOFh0jKc5tpJor3BGV-xS6g&oe=679440D7" alt="Flower">
-        <h2>Pequeña Luz<3</h2>
-      </div>
-      <div class="back">
-        <p>"Para la niña más linda y hermosa que mis ojos hayan visto💖."      
 
-            Que tengas un bonito día, te deseo mucha suerte en este día maravilloso y Diosito te me cuide mucho.                                                 
-
-            Te Amo mi Lucecita❤. </p>
-            
-      </div>
-    </div>
+  <div class="gift-box" id="box">
+    <div class="lid">Toca aquí!</div>
+    <div class="box-body"></div>
   </div>
+  <div class="message" id="message">💖 𝙃𝙊𝙔 𝙏𝙀𝙉𝙂𝙊 𝘼𝙇𝙂𝙊 𝙌𝙐𝙀 𝘿𝙀𝘾𝙄𝙍𝙏𝙀... 💖</div>
+  <div class="second-message" id="secondMessage">🌟 Mi Querida Luz🌷 🌟                                             
+       Tus ojos son el faro que me guía,
+tu risa, mi canción favorita.
+En tu abrazo encuentro la paz,
+y en tus palabras, mi melodía infinita.
+
+Eres el amor que siempre soñé,
+mi razón de ser y de existir.
+Y con cada beso, amor mío,
+te prometo siempre te voy a hacer feliz. 
+𝒯𝑒 𝒜𝓂𝑜 𝓅𝑒𝓆𝓊𝑒𝓃𝒶 𝐿𝓊𝓏🌟, 𝒶𝓂𝑜𝓇 𝒹𝑒 𝓂𝒾 𝓋𝒾𝒹𝒶❤😊
+<p><h5>𝔸𝕥𝕥: 𝕄𝕖𝕟𝕕𝕖𝕝</h5></p></div>
+
+  <div id="player" style="display:none;"></div>
+
+  <script>
+    // Cargar API de YouTube
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '0',
+        width: '0',
+        videoId: 'xrZ8C9QqwkA',
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      // Espera clic
+    }
+
+    const box = document.getElementById('box');
+    const message = document.getElementById('message');
+    const secondMessage = document.getElementById('secondMessage');
+    const flowerEmojis = ['🌸', '🌺', '🌹', '🌷', '🌼', '💐','❤'];
+
+    box.addEventListener('click', () => {
+      if (player) {
+        player.playVideo();
+      }
+
+      box.classList.add('open');
+
+      setTimeout(() => {
+        box.style.transform = 'scale(0)';
+      }, 1200);
+
+      setTimeout(() => {
+        box.style.display = 'none';
+        message.style.display = 'block';
+        showFlowers();
+        setInterval(showFlowers, 500);
+      }, 1800);
+
+      setTimeout(() => {
+        message.style.display = 'none';
+        secondMessage.style.display = 'block';
+      }, 10000);
+    });
+
+    function showFlowers() {
+      const flower = document.createElement('div');
+      flower.classList.add('flower');
+      flower.textContent = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+      flower.style.left = Math.random() * window.innerWidth + 'px';
+      flower.style.top = window.innerHeight + 'px';
+      document.body.appendChild(flower);
+
+      setTimeout(() => {
+        flower.remove();
+      }, 4000);
+    }
+  </script>
 </body>
 </html>
