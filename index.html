@@ -1,229 +1,251 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Te Amo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Cumpleaños</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      margin: 0;
-      padding: 0;
-      background-color: black;
-      overflow: hidden;
-      font-family: 'Arial', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #ffe0e9, #8f1ea1);
+      overflow-x: hidden;
+      position: relative;
+    }
+    .inicio {
       height: 100vh;
-      position: relative;
-    }
-
-    .gift-box {
-      width: 200px;
-      height: 200px;
-      background: repeating-linear-gradient(45deg, #ff69b4, #ff69b4 10px, #ff1493 10px, #ff1493 20px);
-      border-radius: 20px;
-      box-shadow: 0 0 15px #ff69b4;
-      position: relative;
-      cursor: pointer;
-      animation: pulse 2s infinite;
-      transform-style: preserve-3d;
-      perspective: 800px;
-    }
-
-    .lid {
-      position: absolute;
-      width: 100%;
-      height: 50px;
-      top: 0;
-      left: 0;
-      background-color: #ff1493;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-      z-index: 3;
-      transform-origin: top center;
-      transition: transform 1s ease;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #fff0f5;
+      animation: fadeIn 2s ease-in-out;
+      z-index: 10;
+      position: relative;
+    }
+    .regalo {
+      background: #c9184a;
       color: white;
-      font-weight: bold;
-      font-size: 30px;
-      backface-visibility: hidden;
+      padding: 1.5rem 3rem;
+      border: none;
+      border-radius: 2rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      animation: float 2s infinite ease-in-out;
     }
-
-    .gift-box.open .lid {
-      transform: rotateX(-130deg);
+    .regalo:hover {
+      transform: scale(1.1);
+      background: #a0133b;
     }
-
-    .box-body {
-      width: 100%;
-      height: 100%;
-      border-radius: 20px;
-      position: absolute;
-      bottom: 0;
-      left: 0;
+    .regalo-icono {
+      font-size: 2rem;
+    }
+    #contenido {
+      display: none;
+      animation: fadeInUp 2s ease-in-out;
+      position: relative;
       z-index: 1;
     }
-
-    .gift-box::before,
-    .gift-box::after {
-      content: "";
-      position: absolute;
-      background-color: gold;
-      z-index: 2;
-    }
-
-    .gift-box::before {
-      width: 20px;
-      height: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .gift-box::after {
-      height: 20px;
-      width: 100%;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
-    }
-
-    .message, .second-message {
-      display: none;
-      font-size: 32px;
-      color: pink;
-      z-index: 2;
-      position: absolute;
+    header {
       text-align: center;
-      animation: floatText 3s ease-in-out infinite;
+      padding: 2rem;
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: #c9184a;
     }
-    .second-message {
-      font-size: 18px;
+    .mensaje {
+      text-align: center;
+      margin: 2rem;
+      font-size: 1.5rem;
+      color: #6a0f30;
     }
-
-    @keyframes floatText {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
+    .carrusel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      padding: 1rem;
     }
-
-    .flower {
-      position: absolute;
-      font-size: 30px;
-      animation: floatUp 4s linear forwards;
+    .carrusel img {
+      max-height: 300px;
+      border-radius: 1rem;
+      scroll-snap-align: center;
+      transition: transform 0.5s;
+    }
+    .carrusel img:hover {
+      transform: scale(1.1);
+    }
+    .carta {
+      margin: 3rem auto;
+      width: 90%;
+      max-width: 600px;
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    iframe.music {
+      display: none;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 1rem;
+      color: #6a0f30;
+    }
+    .flores {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
+      z-index: 0;
+    }
+    .flor {
+      position: absolute;
+      font-size: 2rem;
+      animation: caer 10s linear infinite;
+      opacity: 0.9;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes caer {
+      0% { top: -50px; transform: rotate(0deg); }
+      100% { top: 100vh; transform: rotate(360deg); }
+    }
+    @media (max-width: 600px) {
+      header { font-size: 2.2rem; }
+      .mensaje { font-size: 1.2rem; }
     }
 
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-600px) scale(1.5);
-        opacity: 0;
-      }
+    .titulo{
+      color: #dcb543;
     }
   </style>
 </head>
-<body>
+<script>
+  let player;
 
-  <div class="gift-box" id="box">
-    <div class="lid">Toca aquí!</div>
-    <div class="box-body"></div>
-  </div>
-  <div class="message" id="message">💖 𝙃𝙊𝙔 𝙏𝙀𝙉𝙂𝙊 𝘼𝙇𝙂𝙊 𝙌𝙐𝙀 𝘿𝙀𝘾𝙄𝙍𝙏𝙀... 💖</div>
-  <div class="second-message" id="secondMessage">🌟 Mi Querida Luz🌷 🌟                                             
-       Tus ojos son el faro que me guía,
-tu risa, mi canción favorita.
-En tu abrazo encuentro la paz,
-y en tus palabras, mi melodía infinita.
+  // Cargar la API de YouTube
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-Eres el amor que siempre soñé,
-mi razón de ser y de existir.
-Y con cada beso, amor mío,
-te prometo siempre te voy a hacer feliz. 
-𝒯𝑒 𝒜𝓂𝑜 𝓅𝑒𝓆𝓊𝑒𝓃𝒶 𝐿𝓊𝓏🌟, 𝒶𝓂𝑜𝓇 𝒹𝑒 𝓂𝒾 𝓋𝒾𝒹𝒶❤😊
-<p><h5>𝔸𝕥𝕥: 𝕄𝕖𝕟𝕕𝕖𝕝</h5></p></div>
-
-  <div id="player" style="display:none;"></div>
-
-  <script>
-    // Cargar API de YouTube
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    var player;
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('player', {
-        height: '0',
-        width: '0',
-        videoId: 'xrZ8C9QqwkA',
-        events: {
-          'onReady': onPlayerReady
-        }
-      });
-    }
-
-    function onPlayerReady(event) {
-      // Espera clic
-    }
-
-    const box = document.getElementById('box');
-    const message = document.getElementById('message');
-    const secondMessage = document.getElementById('secondMessage');
-    const flowerEmojis = ['🌸', '🌺', '🌹', '🌷', '🌼', '💐','❤'];
-
-    box.addEventListener('click', () => {
-      if (player) {
-        player.playVideo();
+  // Crear el reproductor cuando la API esté lista
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '0',
+      width: '0',
+      videoId: 'rW8g9dmmrmg', // 🔁 Puedes cambiar este ID por otro video
+      playerVars: {
+        autoplay: 0,
+        loop: 1,
+        playlist: 'rW8g9dmmrmg',
+        controls: 0,
+        modestbranding: 1
+      },
+      events: {
+        'onReady': onPlayerReady
       }
-
-      box.classList.add('open');
-
-      setTimeout(() => {
-        box.style.transform = 'scale(0)';
-      }, 1200);
-
-      setTimeout(() => {
-        box.style.display = 'none';
-        message.style.display = 'block';
-        showFlowers();
-        setInterval(showFlowers, 500);
-      }, 1800);
-
-      setTimeout(() => {
-        message.style.display = 'none';
-        secondMessage.style.display = 'block';
-      }, 10000);
     });
+  }
 
-    function showFlowers() {
-      const flower = document.createElement('div');
-      flower.classList.add('flower');
-      flower.textContent = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
-      flower.style.left = Math.random() * window.innerWidth + 'px';
-      flower.style.top = window.innerHeight + 'px';
-      document.body.appendChild(flower);
+  // Reproducir cuando el usuario haga clic
+  function onPlayerReady(event) {
+    // Solo se reproduce después del clic, en mostrarSorpresa()
+  }
 
-      setTimeout(() => {
-        flower.remove();
-      }, 4000);
+  function mostrarSorpresa() {
+    document.querySelector('.inicio').style.display = 'none';
+    document.getElementById('contenido').style.display = 'block';
+    iniciarLluviaDeFlores();
+
+    // Reproducir música
+    if (player) {
+      player.playVideo();
     }
-  </script>
+  }
+
+  function iniciarLluviaDeFlores() {
+    const contenedor = document.getElementById('lluviaFlores');
+    const emojis = ['🎀','','🎉','🌷','🎁'];
+    for (let i = 0; i < 30; i++) {
+      const flor = document.createElement('div');
+      flor.classList.add('flor');
+      flor.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      flor.style.left = Math.random() * 100 + 'vw';
+      flor.style.animationDuration = (5 + Math.random() * 5) + 's';
+      flor.style.animationDelay = Math.random() * 5 + 's';
+      contenedor.appendChild(flor);
+    }
+  }
+</script>
+<body>
+  <div class="inicio">
+    <h1 style="font-family: 'Georgia times', cursive; font-size: 2.5rem; color: #6a0f30; margin-bottom: 2rem;">Te tengo una sorpresa...</h1>
+    <button class="regalo" onclick="mostrarSorpresa()">
+      <span class="regalo-icono">🎁</span> ABRIR REGALO
+    </button>
+  </div>
+
+  <div class="flores" id="lluviaFlores"></div>
+
+  <div id="contenido">
+    <header><b class="titulo">¡Feliz Cumpleaños, Mi Amor!</b></header>
+
+    <div class="mensaje">
+      Que tu día sea tan especial como tú lo eres para mí.. Gracias por existir (*^▽^*).
+    </div>
+
+    <div class="carrusel">
+      <img src="https://scontent.flpb1-1.fna.fbcdn.net/v/t39.30808-6/492418811_1863707604409580_36620052348944281_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=f727a1&_nc_ohc=07OS_EfzzYcQ7kNvwFnpygz&_nc_oc=Adk9_ELhZZ2s5BuSrjTrXD5CoQFlqYh3lFjV6JiU43K2v8JZWzVbmqmx7jTeHTh-lTYJHKBXQN2Lv7gpQycQAYsC&_nc_zt=23&_nc_ht=scontent.flpb1-1.fna&_nc_gid=QdTUeRRwwaEDANXowMDCZw&oh=00_AfGs1P6uzTBnYFcwuJHLtcKqIJho36dsT2NxTIYFjhsBVQ&oe=68097535" alt="Foto 1">
+      <img src="https://scontent.flpb1-1.fna.fbcdn.net/v/t39.30808-6/492043242_1863713987742275_5154272689385321622_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=f727a1&_nc_ohc=sR7S16xTE4wQ7kNvwFrtqlL&_nc_oc=Admb_xA0iirSPASesOPzFtD9YxKE4pRPOoc08synM6ckBj8U2TlltwtjjAv7a2NuWiCPUsAP-2rMWjULtyii8CiQ&_nc_zt=23&_nc_ht=scontent.flpb1-1.fna&_nc_gid=ShPUewolF2cDv09QmtwIjA&oh=00_AfGcBVORkBikXiqX00tUcu_xHolJZhVC_ohVG-rQjqsA-A&oe=6809A5CA" alt="Foto 2">
+      <img src="https://scontent.flpb1-1.fna.fbcdn.net/v/t39.30808-6/491996191_1863958151051192_5876945823194490838_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=f727a1&_nc_ohc=bRgw3qxpoJsQ7kNvwERw2-D&_nc_oc=AdkabD6OF0_h3zpydzat6DOQPW-OgUNoN-P01iZIQ2ze2OtJVZXZX_WkbzP2vxU5U7JAPY_TAPtWYKCNWZyM9zX1&_nc_zt=23&_nc_ht=scontent.flpb1-1.fna&_nc_gid=g2iUFNaSzz20Ul-yjZjeQQ&oh=00_AfFvs4NhXfrUnnt-kMtIVM-kFX1vsZgmrol-oUd5Jb2zUw&oe=68097CBB" alt="Foto 3">
+      <img src="https://scontent.flpb1-1.fna.fbcdn.net/v/t39.30808-6/492042528_1863958197717854_6376016465606855005_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=f727a1&_nc_ohc=593tr00GrUgQ7kNvwESAdq7&_nc_oc=AdmSpzzyCJEeZHSdYyzSpDpZz6TooCHXkNtc5Tv2kIE0ZVfNfSe5RqCXF9Vk88_Xpao9bYN7Gom2GUBffIVkZ2Y4&_nc_zt=23&_nc_ht=scontent.flpb1-1.fna&_nc_gid=kKTM_oBtgpT8h5_eJWK7dQ&oh=00_AfHLxZteAN9A7JQsEPtacw0fHsw3dHTn1PDnkWn8xMXx3Q&oe=68098CDD" alt="Foto 4">
+    </div>
+
+    <div class="carta">
+      <h2 style="text-align:center; color: #c9184a; font-family: 'Great Vibes', cursive;">Mi Princesa:</h2>
+      <p style="margin-top:1rem; font-size:1.2rem;">
+        
+
+Para mi pequeña Luz🌺🌟:
+Amarte es tan fácil como respirar. Es un sentimiento que llegó despacio, pero que se apoderó de mi alma y hoy no puedo imaginar una vida sin ti. Soy la persona más afortunada de este mundo por poder compartir los mejores momentos de mi vida con alguien tan especial. Amarte me hace sentir libre para ser quien realmente soy. Para tener orgullo de mis decisiones y afrontar la vida con más optimismo.
+
+Hoy no es un día especial solo para ti. Es un día que también dedico al universo, que nos unió en el momento en que más nos necesitábamos.
+
+Mi amor, lo único que deseo para ti es todo lo mejor que este mundo tiene para ofrecer. Mucha salud, mucha paz, mucho éxito y muchos logros. Pero ¿y el amor? Ah, ese regalo me comprometo a dártelo por toda la eternidad. ¡Felicidades para el amor de mi vida.❤😊!
+      </p>
+    </div>
+
+    <iframe id="musica" class="music" width="0" height="0" src="" allow="autoplay"></iframe>
+
+    <footer>
+      Con todo mi amor, para ti Lucecita❤ (By: Mendel).
+    </footer>
+  </div>
+
+  <!-- Contenedor oculto para el reproductor -->
+<div id="player" style="display:none;"></div>
+
+
+
 </body>
 </html>
